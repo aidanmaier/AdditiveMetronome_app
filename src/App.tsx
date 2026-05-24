@@ -1,5 +1,7 @@
 // import './App.css'
 import { ClockProvider } from "./context/ClockContext";
+import DigitalDisplay from "./components/DigitalDisplay";
+import Sequencer from "./components/Sequencer";
 
 function App() {
 
@@ -7,7 +9,8 @@ function App() {
     <>
       <ClockProvider>
         <div className="app-container">
-          {/* wrap other components in clock provider */}
+          <DigitalDisplay />
+          <Sequencer />
         </div>
       </ClockProvider>
     </>
