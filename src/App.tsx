@@ -1,7 +1,9 @@
 // import './App.css'
 import { ClockProvider } from "./context/ClockContext";
-import DigitalDisplay from "./components/DigitalDisplay";
-import Sequencer from "./components/Sequencer";
+import MenuAppBar from "./components/MenuAppBar";
+import OutputControl from "./components/OutputControl";
+import PatternControl from "./components/PatternControl";
+import TempoControl from "./components/TempoControl";
 
 function App() {
 
@@ -9,8 +11,10 @@ function App() {
     <>
       <ClockProvider>
         <div className="app-container">
-          <DigitalDisplay />
-          <Sequencer sequenceLength={15}/>
+          <MenuAppBar />
+          <OutputControl />
+          <PatternControl />
+          <TempoControl />
         </div>
       </ClockProvider>
     </>

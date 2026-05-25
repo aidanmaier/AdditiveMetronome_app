@@ -7,7 +7,7 @@ interface SequencerProps {
 
 export default function Sequencer(props: SequencerProps) {
 
-  const time = useClock();
+  const { time } = useClock();
   const steps = useMemo(() => [...Array(props.sequenceLength).keys()], []);
   const activeStep = time.getSeconds() % steps.length;
 
@@ -23,9 +23,6 @@ export default function Sequencer(props: SequencerProps) {
     >
       <div style={{ textAlign: 'center' }}>
         <h2>Sequencer</h2>
-        <p style={{ margin: 0, color: 'var(--text)' }}>
-          Step {activeStep + 1} / {steps.length}
-        </p>
       </div>
       <div
         style={{
