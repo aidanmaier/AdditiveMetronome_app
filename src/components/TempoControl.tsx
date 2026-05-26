@@ -10,7 +10,7 @@ import StopRoundedIcon from '@mui/icons-material/StopRounded';
 // import { MusicNote } from "@mui/icons-material";
 
 export default function TempoControl() {
-  const [playState, setPlayState] = useState(0); // playButton state
+  const [playState, setPlayState] = useState(false); // playButton state
   const [tempo, setTempo] = useState(120); // tempo state
 
   return (
@@ -89,7 +89,7 @@ export default function TempoControl() {
               variant="contained" 
               aria-label="Start metronome" 
               sx={{ width: 170, height: 50 }}
-              onClick={() => setPlayState((playState + 1) % 2)} // binary state
+              onClick={() => setPlayState((!playState))} // binary state
             >
               {playState ? 
                 <StopRoundedIcon /> :

@@ -1,16 +1,11 @@
 import * as React from 'react';
 import { Button, Menu, MenuItem } from "@mui/material"
-import { Remove } from '@mui/icons-material';
 import ChangeHistoryRoundedIcon from '@mui/icons-material/ChangeHistoryRounded';
 import CropSquareRoundedIcon from '@mui/icons-material/CropSquareRounded';
+import { Add } from '@mui/icons-material';
 
-interface BeatBoxProps {
-  long: boolean;
-  id?: string;
-}
 
-export default function BeatBox(props: BeatBoxProps) {
-  const widthMod = props.long ? 1.5 : 1;
+export default function AddBeatBox() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -22,19 +17,18 @@ export default function BeatBox(props: BeatBoxProps) {
   return(
     <>
       <Button 
+        aria-label="Add beat"
+        variant="outlined"
         sx={{ 
-          border: "2px solid lightgrey", 
-          borderRadius: 2,
-          width: (50 * widthMod),
-          height: 50,
-          boxShadow: 1,
-          alignContent: "center",
+            borderRadius: 2,
+            width: 50,
+            height: 50,
+            alignContent: "center",
+            p: 0,
         }} 
         onClick={handleMenu}
       >
-        {props.long ? 
-          <ChangeHistoryRoundedIcon fontSize="large" htmlColor="orangered" />: 
-          <CropSquareRoundedIcon fontSize="large" htmlColor="green" />}
+        <Add fontSize="medium" />
       </Button>
       <Menu 
         anchorEl={anchorEl}
@@ -50,19 +44,11 @@ export default function BeatBox(props: BeatBoxProps) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem 
-          aria-label="Change value"
-          onClick={handleClose} 
-        >
-          {props.long ? 
-            <CropSquareRoundedIcon fontSize="large" htmlColor="green" /> :
-            <ChangeHistoryRoundedIcon fontSize="large" htmlColor="orangered" />}
+        <MenuItem aria-label="Short beat" onClick={handleClose} >
+            <CropSquareRoundedIcon fontSize="large" htmlColor="green" />
         </MenuItem>
-        <MenuItem onClick={handleClose} aria-label="Remove">
-          <Remove 
-            fontSize='large'
-            htmlColor='blue'
-          />
+        <MenuItem aria-label="Long beat" onClick={handleClose} >
+          <ChangeHistoryRoundedIcon fontSize="large" htmlColor="orangered" />
         </MenuItem>
       </Menu>
     </>

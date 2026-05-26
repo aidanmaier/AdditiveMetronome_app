@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import BeatBox from "./BeatBox";
-import { Add } from '@mui/icons-material';
+import AddBeatBox from "./AddBeatBox";
 
 export default function PatternControl() {
   let patternLength = 12;
@@ -39,19 +39,8 @@ export default function PatternControl() {
           <BeatBox long={true}/>
           <BeatBox long={false}/>
           <BeatBox long={true}/>
-          <Button 
-            variant="outlined"
-            sx={{ 
-              borderRadius: 2,
-              width: 50,
-              height: 50,
-              alignContent: "center",
-              p: 0,
-            }} 
-          >
-            <Add fontSize="medium" />
-          </Button>
-        </Grid>
+          <AddBeatBox />
+    </Grid>
       </Grid>
     </Box>
     )
