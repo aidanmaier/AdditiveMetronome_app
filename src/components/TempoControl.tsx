@@ -89,7 +89,7 @@ export default function TempoControl() {
               variant="contained" 
               aria-label="Start metronome" 
               sx={{ width: 170, height: 50 }}
-              onClick={() => setPlayState((!playState))} // binary state
+              onClick={() => setPlayState(!playState)} // binary state
             >
               {playState ? 
                 <StopRoundedIcon /> :

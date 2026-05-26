@@ -1,18 +1,25 @@
-import { Box, Button, Grid, Stack, Typography, Slider } from "@mui/material";
+import { Box, Grid, Stack, ButtonGroup, Typography, Slider } from "@mui/material";
+import OutputButton from "./OutputButton";
 import BeatGrid from "./BeatGrid";
-import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
+// import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
+
+const outputButtons = [
+  <OutputButton text="Mute" label="Mute"/>,
+  <OutputButton text="Flash" label="Visual click"/>,
+  <OutputButton text="Fill" label="Sound subdivisions"/>,
+];
 
 export default function OutputControl() {
-    return(
-        <Box 
+  return(
+    <Box 
       sx={{ 
         flexGrow: 1,
         border: "1px solid lightgrey", 
         borderRadius: 2,
-        m: 2,
+        maxWidth: 450,
       }} 
     >
-        <Grid 
+      <Grid 
         container 
         rowSpacing={1.5} 
         columnSpacing={4}
@@ -29,26 +36,21 @@ export default function OutputControl() {
             <Slider 
                 size="small"
                 min={0}
-                max={1}
-                defaultValue={0.5}
+                max={100}
+                defaultValue={50}
             />
         </Stack>
-        <Stack direction={"row"} spacing={4} sx={{ height: 30 }} >
-          <Button variant="outlined" aria-label="Visual click" sx={{ width: 30}}>
-            Flash
-          </Button>
-          <Button variant="outlined" aria-label="Sound subdivisions" sx={{ width: 30}}>
-            Fill
-          </Button >
-          <Button 
-            variant="outlined" 
-            aria-label="Mute"
-            startIcon={<VolumeOffRoundedIcon />} 
-            sx={{ width: 30}} 
-          />
+        <Stack direction={"row"} spacing={4} sx={{ width: "100%", alignItems: "top" }} >
+          <ButtonGroup 
+            aria-label="Output control buttons"
+            orientation="vertical" 
+            sx={{ width: 60 }}
+          >
+            {outputButtons}
+          </ButtonGroup>
+          <BeatGrid />
         </Stack>
-        <BeatGrid />
       </Grid>
     </Box>
-    )
+  )
 }

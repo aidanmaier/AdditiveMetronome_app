@@ -11,7 +11,7 @@ export default function PatternControl() {
         flexGrow: 1,
         border: "1px solid lightgrey", 
         borderRadius: 2,
-        m: 2,
+        maxWidth: 450,
       }} 
     >
       <Grid 
@@ -40,7 +40,7 @@ export default function PatternControl() {
           <BeatBox long={false}/>
           <BeatBox long={true}/>
           <AddBeatBox />
-    </Grid>
+        </Grid>
       </Grid>
     </Box>
     )
