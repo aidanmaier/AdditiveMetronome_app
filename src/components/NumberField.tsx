@@ -12,13 +12,13 @@ export default function NumberField() {
         <FormControl variant="outlined" size="small">
             <OutlinedInput 
                 type="number"
+                aria-label="Tempo number field"
                 sx={{ 
                     alignContent: "center",
                     width: 90,
-                    height: 40, 
+                    height: 50, 
                 }}
-            >
-            </OutlinedInput>
+            />
         </FormControl>
     )
 }

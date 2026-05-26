@@ -43,13 +43,13 @@ export default function PatternControl() {
             variant="outlined"
             sx={{ 
               borderRadius: 2,
-              width: 67,
+              width: 50,
               height: 50,
               alignContent: "center",
-              boxShadow: 1,
+              p: 0,
             }} 
           >
-            <Add fontSize="large" />
+            <Add fontSize="medium" />
           </Button>
         </Grid>
       </Grid>

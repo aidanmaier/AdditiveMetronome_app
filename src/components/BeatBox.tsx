@@ -7,14 +7,16 @@ interface BeatBoxProps {
   long: boolean;
 }
 
-export default function BeatBoxShort(props: BeatBoxProps) {
-    return(
+export default function BeatBox(props: BeatBoxProps) {
+  const widthMod = props.long ? 1.5 : 1;
+  
+  return(
         <Box 
             sx={{ 
               border: "2px solid lightgrey", 
               borderRadius: 2,
-              width:63,
-              height: 50,
+              width: (50 * widthMod) - 4,
+              height: 46,
               boxShadow: 1,
               alignContent: "center",
             }} 
