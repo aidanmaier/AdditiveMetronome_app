@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Add, Settings } from '@mui/icons-material';
+import { QuestionMark, Settings } from '@mui/icons-material';
 
 export default function MenuAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -21,11 +21,20 @@ export default function MenuAppBar() {
     <Box sx={{ flexGrow: 1, m: 0, p: 0 }}>
       <AppBar position="static" sx={{ width: "100%", m: 0, px: 1 }}>
         <Toolbar sx={{ m: 0, p: 0 }}>
-          <Add sx={{ m: 1 }} />
-          <Typography  component="div" sx={{ flexGrow: 1 }}>
+          <Typography  component="div" sx={{ flexGrow: 1, fontSize: 22}}>
             Additive Metronome
           </Typography>
           <div>
+            <IconButton
+              size="small"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              // onClick={}
+              color="inherit"
+            >
+              <QuestionMark fontSize="small" />
+            </IconButton >
             <IconButton
               size="small"
               aria-label="account of current user"
@@ -51,10 +60,10 @@ export default function MenuAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Settings A</MenuItem>
-                <MenuItem onClick={handleClose}>Settings B</MenuItem>
-              </Menu>
-            </div>
+              <MenuItem onClick={handleClose}>Settings A</MenuItem>
+              <MenuItem onClick={handleClose}>Settings B</MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
     </Box>

@@ -38,6 +38,7 @@ export default function OutputControl() {
                 min={0}
                 max={100}
                 defaultValue={50}
+                valueLabelDisplay="auto"
             />
         </Stack>
         <Stack direction={"row"} spacing={4} sx={{ width: "100%", alignItems: "top" }} >
