@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import { ClockContext } from '../context/ClockContext';
+import { useContext } from "react";
+import { ClockContext } from "../context/ClockContext";
 
 export const useClock = () => {
   const context = useContext(ClockContext);
   if (!context) {
-    throw new Error('useClock must be used within a ClockProvider');
+    throw new Error("useClock must be used within a ClockProvider");
   }
   return context;
 };

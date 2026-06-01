@@ -4,15 +4,16 @@ import NumberField from "./NumberField";
 import NumberDisplay from "./NumberDisplay";
 import TempoSlider from './TempoSlider';
 import { useClock } from '../hooks/useClock';
+
 import ChangeHistoryRoundedIcon from '@mui/icons-material/ChangeHistoryRounded';
 import CropSquareRoundedIcon from '@mui/icons-material/CropSquareRounded';
 import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
 import StopRoundedIcon from '@mui/icons-material/StopRounded';
 
 export default function TempoControl() {
-  const [playState, setPlayState] = useState(false); // playButton state
+  // const [playState, setPlayState] = useState(false); // playButton state
   const [tapTimes, setTapTimes] = useState<number[]>([]);
-  const { bpm, setBpm } = useClock();
+  const { bpm, setBpm, playState, setPlayState } = useClock();
 
   const handleTapTempo = () => {
     const now = Date.now();
@@ -128,6 +129,7 @@ export default function TempoControl() {
               id='playButton'
               variant="contained" 
               aria-label="Start metronome" 
+              color={playState? "secondary" : "primary"}
               sx={{ width: 170, height: 50 }}
               onClick={() => setPlayState(!playState)} // binary state
             >

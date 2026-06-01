@@ -5,7 +5,7 @@ interface sliderProps {
     min: number;
     max: number;
     default?: number;
-    value?: number; // if value provided, component becomes controlled
+    value: number; // if value provided, component becomes controlled
     onChange?: (value: number) => void;
 }
 

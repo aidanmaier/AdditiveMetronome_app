@@ -1,6 +1,6 @@
 import React from 'react';
 import { OutlinedInput, FormControl } from '@mui/material';
-// import { Add, Remove } from '@mui/icons-material';
+import { Add, Remove } from '@mui/icons-material';
 
 interface NumberFieldProps {
     value: number;
@@ -20,7 +20,7 @@ export default function NumberField({ value, onChange, min, max }: NumberFieldPr
     };
 
     return (
-        <FormControl variant="outlined" size="small">
+        <FormControl variant="outlined" >
             <OutlinedInput
                 type="number"
                 aria-label="Tempo number field"

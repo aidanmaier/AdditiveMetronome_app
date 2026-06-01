@@ -1,19 +1,32 @@
-import { useState } from "react";
 import { useClock } from "../hooks/useClock";
+import { useSound } from "../hooks/useSound";
 import { Box, Grid, Stack, ButtonGroup, Typography, Slider } from "@mui/material";
 import OutputButton from "./OutputButton";
 import BeatGrid from "./BeatGrid";
-// import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
 
 export default function OutputControl() {
   const { flashState, setFlashState } = useClock();
-  const [mute, setMute] = useState(false);
-  const [fill, setFill] = useState(false);
+  const { volume, setVolume, mute, setMute, fill, setFill } = useSound();
 
   const outputButtons = [
-    { text: "Mute", ariaLabel: "Mute", clickFunction: () => setMute(!mute) },
-    { text: "Flash", ariaLabel: "Visual click", clickFunction: () => setFlashState(!flashState) },
-    { text: "Fill", ariaLabel: "Hear subdivisions", clickFunction: () => setFill(!fill) },
+    { 
+      text: "Mute", 
+      ariaLabel: "Mute", 
+      clickFunction: () => setMute(!mute),
+      selected: mute
+    },
+    { 
+      text: "Flash", 
+      ariaLabel: "Visual click", 
+      clickFunction: () => setFlashState(!flashState),
+      selected: flashState
+    },
+    { 
+      text: "Fill", 
+      ariaLabel: "Hear subdivisions", 
+      clickFunction: () => setFill(!fill),
+      selected: fill
+    },
   ];
 
   return (
@@ -37,16 +50,28 @@ export default function OutputControl() {
           sx={{ p: 0, width: 315, height: 20, alignItems: "center" }}
         >
           <Typography>Volume</Typography>
-          <Slider size="small" min={0} max={100} defaultValue={50} valueLabelDisplay="auto" />
-        </Stack>
-        <Stack direction={"row"} spacing={4} sx={{ width: "100%", alignItems: "top" }}>
+          <Slider
+            size="small"
+            min={0}
+            max={100}
+            value={volume}
+            onChange={(_e, v: number | number[]) => {
+              const newValue = Array.isArray(v) ? v[0] : v;
+              if (mute) setMute(false);
+              setVolume(newValue);
+            }}
+            sx={mute ? { opacity: 0.5 } : {}} // appear disabled when mute
+            valueLabelDisplay="auto"
+          />
+        </Stack >
+        <Stack direction={"row"} spacing={4} sx={{ width: "100%", alignItems: "flex-start" }}>
           <ButtonGroup aria-label="Output control buttons" orientation="vertical" sx={{ width: 60 }}>
             {outputButtons.map((button) => (
               <OutputButton
                 key={button.text}
                 text={button.text}
                 ariaLabel={button.ariaLabel}
-                selected={button.text === "Flash" ? flashState : false}
+                selected={button.selected}
                 onClick={button.clickFunction}
               />
             ))}

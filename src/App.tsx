@@ -1,6 +1,7 @@
 // import './App.css'
 import { useState, useEffect } from 'react';
 import { ClockProvider } from "./context/ClockContext";
+import { SoundProvider } from './context/SoundContext';
 import { useClock } from "./hooks/useClock";
 import { Grid } from "@mui/material";
 import MenuAppBar from "./components/MenuAppBar";
@@ -15,7 +16,7 @@ const AppContent = () => {
   const [flash, setFlash] = useState(false);
 
   useEffect(() => {
-    if (!flashState) {return};
+    if (!flashState || !playState) {return};
     setFlash(true);
     const timeout = window.setTimeout(() => setFlash(false), 120);
     return () => window.clearTimeout(timeout);
@@ -53,7 +54,9 @@ const AppContent = () => {
 export default function App() {
   return (
     <ClockProvider>
-      <AppContent />
+      <SoundProvider>
+        <AppContent />
+      </SoundProvider>
     </ClockProvider>
   );
 }

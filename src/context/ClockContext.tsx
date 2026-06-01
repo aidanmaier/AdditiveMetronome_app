@@ -28,12 +28,16 @@ export const ClockProvider = ({ children, initialInterval = 1000 }: ClockProvide
   const bpm = Math.round(60000 / intervalMs);
 
   useEffect(() => {
+    if (!playState) {
+      return;
+    }
+
     const timerId = window.setInterval(() => {
       setTime(new Date());
     }, intervalMs);
 
     return () => window.clearInterval(timerId);
-  }, [intervalMs]);
+  }, [intervalMs, playState]);
 
   const setBpm = (newBpm: number) => {
     // prevent invalid values

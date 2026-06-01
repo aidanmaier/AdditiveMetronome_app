@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import BeatBox from "./BeatBox";
 import AddBeatBox from "./AddBeatBox";
 
