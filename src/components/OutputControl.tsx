@@ -2,7 +2,7 @@ import { useClock } from "../hooks/useClock";
 import { useSound } from "../hooks/useSound";
 import { Box, Grid, Stack, ButtonGroup, Typography, Slider } from "@mui/material";
 import OutputButton from "./OutputButton";
-import BeatGrid from "./BeatGrid";
+import StepSequence from "./StepSequence";
 
 export default function OutputControl() {
   const { flashState, setFlashState } = useClock();
@@ -47,7 +47,13 @@ export default function OutputControl() {
         <Stack
           direction={"row"}
           spacing={4}
-          sx={{ p: 0, width: 315, height: 20, alignItems: "center" }}
+          sx={{ 
+            p: 0, 
+            width: 315, 
+            height: 20, 
+            alignItems: "center", 
+            justifyContent: "space-between",
+          }}
         >
           <Typography>Volume</Typography>
           <Slider
@@ -55,17 +61,25 @@ export default function OutputControl() {
             min={0}
             max={100}
             value={volume}
+            sx = {{
+              opacity: mute? 0.5 : 1, // appear disabled when mute
+              width: 200,
+            }}
             onChange={(_e, v: number | number[]) => {
               const newValue = Array.isArray(v) ? v[0] : v;
               if (mute) setMute(false);
               setVolume(newValue);
             }}
-            sx={mute ? { opacity: 0.5 } : {}} // appear disabled when mute
             valueLabelDisplay="auto"
           />
         </Stack >
         <Stack direction={"row"} spacing={4} sx={{ width: "100%", alignItems: "flex-start" }}>
-          <ButtonGroup aria-label="Output control buttons" orientation="vertical" sx={{ width: 60 }}>
+          <ButtonGroup 
+            aria-label="Output 
+            control buttons" 
+            orientation="vertical" 
+            sx={{ width: 60 }}
+          >
             {outputButtons.map((button) => (
               <OutputButton
                 key={button.text}
@@ -76,7 +90,7 @@ export default function OutputControl() {
               />
             ))}
           </ButtonGroup>
-          <BeatGrid />
+          <StepSequence />
         </Stack>
       </Grid>
     </Box>

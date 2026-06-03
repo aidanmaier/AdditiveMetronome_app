@@ -66,10 +66,16 @@ export default function TempoControl() {
         <Stack 
           direction={"row"} 
           spacing={4}
-          sx={{ p: 0, width: 315, height: 20, alignItems: "center" }} 
+          sx={{ 
+            p: 0, 
+            width: 315, 
+            height: 20, 
+            alignItems: "center", 
+            justifyContent: "space-between",
+          }} 
         >
             <Typography>
-                Tempo
+                Tempo (bpm)
             </Typography>
             <TempoSlider 
               min={60}
@@ -98,6 +104,7 @@ export default function TempoControl() {
                 width: 90, 
                 height: 50, 
                 boxShadow: 1,
+                fontSize: "large",
               }}
               onClick={handleTapTempo}
             >
@@ -134,8 +141,8 @@ export default function TempoControl() {
               onClick={() => setPlayState(!playState)} // binary state
             >
               {playState ? 
-                <StopRoundedIcon /> :
-                <PlayArrowRoundedIcon />
+                <StopRoundedIcon fontSize="large" /> :
+                <PlayArrowRoundedIcon fontSize="large" />
               }
             </Button>
           </Grid>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { MouseEvent } from "react";
 import { Box, Grid, Stack, Typography, Button, Menu, MenuItem } from "@mui/material";
 import { useSound } from "../hooks/useSound";
+import { useClock } from "../hooks/useClock";
 import BeatBox from "./BeatBox";
 import ChangeHistoryRoundedIcon from '@mui/icons-material/ChangeHistoryRounded';
 import CropSquareRoundedIcon from '@mui/icons-material/CropSquareRounded';
@@ -9,17 +10,17 @@ import { Add, Close } from '@mui/icons-material';
 
 export default function PatternControl() {
   const { sequence, setSequence } = useSound();
+  const { playState } = useClock();
   const maxLength = 16;
-  const [pattern, setPattern] = useState(
-    [{long: false}, {long: false}, {long: true}] // init pattern 2+2+3
-  );
-
+  const initPattern = [{long: false}, {long: false}, {long: true}]
+  const [pattern, setPattern] = useState(initPattern);
   const [optionsAnchorEl, setOptionsAnchorEl] = useState<null | HTMLElement>(null);
   const [addAnchorEl, setAddAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleOptionsMenu = (event: MouseEvent<HTMLElement>) => {
     setOptionsAnchorEl(event.currentTarget);
   };
+  
   const handleCloseOptionsMenu = () => {
     setOptionsAnchorEl(null);
   };
@@ -27,6 +28,7 @@ export default function PatternControl() {
   const handleAddMenu = (event: MouseEvent<HTMLElement>) => {
     setAddAnchorEl(event.currentTarget);
   };
+  
   const handleCloseAddMenu = () => {
     setAddAnchorEl(null);
   };
@@ -85,6 +87,7 @@ export default function PatternControl() {
                 minWidth: 30,
                 maxWidth: 30,
               }}
+              disabled={playState ? true : false} // diasabled if playing
               onClick={handleOptionsMenu}
             >
               <Close fontSize="small" />
@@ -128,8 +131,8 @@ export default function PatternControl() {
                 alignContent: "center",
                 p: 0,
             }} 
-            // disable if sequence is too long
-            disabled={ sequence.length < (maxLength - 1) ? false : true }
+            // disable if playing or sequence is too long
+            disabled={ !playState && (sequence.length < (maxLength - 1)) ? false : true }
             onClick={handleAddMenu}
           >
             <Add fontSize="medium" />

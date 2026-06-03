@@ -32,6 +32,7 @@ export default function TempoSlider(props: sliderProps) {
             max={props.max}
             value={value}
             onChange={handleChange}
+            sx={{ width: 164 }}
         />
     );
 }
